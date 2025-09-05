@@ -1,0 +1,11 @@
+img {
+    width: 125px;
+    margin-bottom: 20px;
+}
+
+.planetInfo {
+    margin: 30px 30px;
+    border: white dotted 2px;
+    width: 125px;
+    padding: 20px 50px;
+}

@@ -1,0 +1,33 @@
+This should be a route file
+need to play around with this
+
+const AppRoutes = () => {
+  return (
+    <Router>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />}>
+		<Route
+	</Route>
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
+  );
+};
+export default AppRoutes;
+
+
+
+Need to recall getSpacecrafts after adding or destroying to rerender page
+clean up getSpacecrafts to call it on other pages
+
+"API" is just saving on local storage its not pulling from Mock
+
+destroying will remove from storage
