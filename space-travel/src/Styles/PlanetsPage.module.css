@@ -2,4 +2,20 @@
     border: white solid 2px;
     width: 50%;
     margin: 20px auto;
+    display: flex;
+    align-items: center;
+}
+
+.shipPlanetPage {
+    border: 2px dotted white;
+    height: 60px;
+    width: auto;
+    margin: 5px;
+}
+
+.loading {
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    margin-top: 15%;
 }

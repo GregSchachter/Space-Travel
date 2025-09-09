@@ -4,11 +4,7 @@ import React, { useEffect, useState, } from "react";
 import SpaceTravelApi from "./services/SpaceTravelApi.js";
 import shipContext from "./context/shipContext.js"
 
-import HomePage from "./Pages/HomePage.jsx";
-import PlanetsPage from "./Pages/PlanetsPage.jsx";
-import SpaceCraftsPage from "./Pages/SpaceCraftsPage.jsx"
-import { BrowserRouter } from "react-router-dom";
-import Construction from "./Pages/Construction.jsx";
+import AppRoutes from "./Routes/AppRoutes.jsx";
 
 
 
@@ -23,6 +19,7 @@ function App (){
 
   useEffect(() => {
         try {
+          localStorage.clear()
         async function shipReq() {
             const ship = await SpaceTravelApi.getSpacecrafts();
             setShips(ship.data)
@@ -35,13 +32,11 @@ function App (){
 
     },[]
 )
-console.log(ships)
+
   return (
-    <BrowserRouter>
       <shipContext.Provider value={contextValue}>
-        <SpaceCraftsPage />
+        <AppRoutes />
       </shipContext.Provider>
-    </BrowserRouter>
   );
 }
 

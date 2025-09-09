@@ -1,3 +1,5 @@
+import "../Styles/HomePage.css"
+
 const homePageInfo = [
     {
         title: 'Journey into the Future',
@@ -23,17 +25,17 @@ const homePageInfo = [
 
 export default function HomePage() {
   return (
-    <>
+    <div id="homepage">
         <h2>Space Travel: Expanding Horizons Beyond Earth</h2>
         {homePageInfo.map(info => {
             return (
-                <div className="hpInfoBlock">
+                <div key = {info.title} className="hpInfoBlock">
                     <h3>{info.title}</h3>
                     <div className="infoBlockDesc">{info.description}</div>
                 </div>
             )
         })}
 
-    </>
+    </div>
   )
 }

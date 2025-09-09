@@ -1,10 +1,13 @@
 import { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import shipContext from "../context/shipContext"
 import SpaceTravelApi from "../services/SpaceTravelApi"
+import "../Styles/Construction.css"
 
 export default function Construction() {
   const {ships, setShips} = useContext(shipContext)
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   
   const [spaceship, setSpaceship] = useState({
     name:"",
@@ -26,6 +29,15 @@ export default function Construction() {
     desc: false,
     pic: false,
   })
+
+  if (ships === null || loading === true){
+        return (
+            <div id="loading" className="loading">
+              <p>Loading</p>
+              <img src="https://media1.tenor.com/m/khzZ7-YSJW4AAAAC/cargando.gif"/>
+            </div>
+        )
+    }
 
   function handleChange(e){
     const {name, value} = e.target;
@@ -54,8 +66,9 @@ export default function Construction() {
     }))
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    
 
         if(!Object.values(val).every(Boolean)){
           if(val.name===false) {setInvalid(i => ({...i, name: true}))}
@@ -64,25 +77,16 @@ export default function Construction() {
           if(val.pic===false) {setInvalid(i => ({...i, pic: true}))}
             return
         }
-      
+      setLoading(true)
         SpaceTravelApi.buildSpacecraft({
           name: spaceship.name,
-          capacity: spaceship.cap,
+          capacity: Number(spaceship.cap),
           description: spaceship.desc,
           pictureUrl: spaceship.pic
         })
-    // setShips(ship => ([
-    //   ...ship,
-    //   {
-    //     id: spaceship.name,
-    //     name: spaceship.name,
-    //     capacity: spaceship.cap,
-    //     description: spaceship.desc,
-    //     pictureUrl: spaceship.pic,
-    //     currentLocation: 2
-    //   }
 
-    // ]))
+            const ship = await SpaceTravelApi.getSpacecrafts();
+            setShips(ship.data)
 
     setSpaceship({
       name:"",
@@ -91,11 +95,13 @@ export default function Construction() {
       pic:""
     })
     
+    
+    navigate("/Spacecrafts")
   }
 
   return (
     <>
-        <Link to="./SpaceCraftsPage" />
+        <Link to="/Spacecrafts" id="backBtn">Back</Link>
         <div id='form'>
         <form onSubmit={handleSubmit}>
             <input 
@@ -129,7 +135,7 @@ export default function Construction() {
               onChange={handleChange}
               name="pic"
             />
-            <button type="submit">Build</button>
+            <button type="submit" id="submitBtn">Build</button>
         </form>
         {invalid.name === true ? <p className="req">Name is required</p> : ""}
         {invalid.cap === true ? <p className="req">Capacity is required</p> : ""}

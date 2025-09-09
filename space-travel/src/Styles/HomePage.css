@@ -1,0 +1,22 @@
+.hpInfoBlock {
+    border: 1px white dotted;
+    padding: 20px 30px;
+    width: 50%;
+    /* margin-left: 19%; */
+    text-align: left;
+    margin: 20px auto;
+}
+
+#homepage {
+    text-align: center;
+}
+
+h3 {
+    padding-bottom: 10px;
+    font-size: 1.25rem;
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 1.35rem;
+}

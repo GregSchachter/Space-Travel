@@ -1,0 +1,22 @@
+.shipPagePic {
+    border: white dotted 2px;
+    margin: 10px auto;
+    display: block;
+}
+
+.shipPage {
+    width: 50%;
+    margin: 10px auto;
+}
+
+.shipInfo {
+    width: 20%;
+    float: left;
+    margin-top: 30px;
+}
+
+.shipDesc {
+    width: 50%;
+    float: right;
+    margin-top: 30px;
+}
